@@ -6,7 +6,7 @@ export type PersonProps = {
     age: number,
     height?: string,
     aside?: any
-    onClickPerson?: () => void
+    onClickPerson?: () => void,
 }
 
 export class Person extends  React.Component<PersonProps, any> {
@@ -40,13 +40,7 @@ export class Person extends  React.Component<PersonProps, any> {
     render() {
         return (
             <div style={{cursor: 'pointer'}} onClick={this.props.onClickPerson}>
-                <h3>Fullname: {this.props.fullname}</h3>
-                {/*<p>Age: {this.props.age}</p>*/}
-                {/*<p>Height: {this.props.height ? this.props.height : Person.defaultHeight}</p>*/}
-
-                {/*<div>STATE COUNTER: {this.state.counter}</div>*/}
-                {/*<button onClick={this.handleClickIncrease}>Increase</button>*/}
-                {/*<button onClick={this.handleClickDecrease}>Decrease</button>*/}
+                <h3>ID: {this.props.id} --- Fullname: {this.props.fullname}</h3>
             </div>
         )
     }
