@@ -1,10 +1,12 @@
 import React, {Component, FunctionComponent} from 'react';
 
 export type PersonProps = {
+    id: string,
     fullname: string,
     age: number,
     height?: string,
     aside?: any
+    onClickPerson?: () => void
 }
 
 export class Person extends  React.Component<PersonProps, any> {
@@ -36,16 +38,15 @@ export class Person extends  React.Component<PersonProps, any> {
     }
 
     render() {
-        console.log("render")
         return (
-            <div>
+            <div style={{cursor: 'pointer'}} onClick={this.props.onClickPerson}>
                 <h3>Fullname: {this.props.fullname}</h3>
-                <p>Age: {this.props.age}</p>
-                <p>Height: {this.props.height ? this.props.height : Person.defaultHeight}</p>
+                {/*<p>Age: {this.props.age}</p>*/}
+                {/*<p>Height: {this.props.height ? this.props.height : Person.defaultHeight}</p>*/}
 
-                <div>STATE COUNTER: {this.state.counter}</div>
-                <button onClick={this.handleClickIncrease}>Increase</button>
-                <button onClick={this.handleClickDecrease}>Decrease</button>
+                {/*<div>STATE COUNTER: {this.state.counter}</div>*/}
+                {/*<button onClick={this.handleClickIncrease}>Increase</button>*/}
+                {/*<button onClick={this.handleClickDecrease}>Decrease</button>*/}
             </div>
         )
     }
