@@ -1,48 +1,82 @@
 import React, {Component} from 'react';
+import {CounterDataContext, CounterDataContextType} from '../context/CounterDataContext';
 
 type CounterStateType = {
-    count: number;
+    // count: number;
 }
 
 type CounterPropsType = {
-    getDataFromCounter: (value: number) => void
+    // getDataFromCounter: (value: number) => void
 }
 
 class Counter extends Component<CounterPropsType, CounterStateType> {
 
     constructor(props: any) {
         super(props);
-        this.state = {
-            count: 0
-        }
     }
 
-    handleClickIncrease = () => {
-        const newState = {
-            ...this.state,
-            count: this.state.count + 1
-        }
-        this.setState(newState);
-        this.props.getDataFromCounter(newState.count);
-    }
-
-    handleClickDecrease = () => {
-        const newState = {
-            ...this.state,
-            count: this.state.count - 1
-        }
-        this.setState(newState);
-        this.props.getDataFromCounter(newState.count);
-    }
+    // increase = () => {
+    //     //@ts-ignore
+    //     const newCount = this.context.count + 1;
+    //     //@ts-ignore
+    //     this.context.setCount(newCount);
+    // }
+    // decrease = () => {
+    //     //@ts-ignore
+    //     const newCount = this.context.count - 1;
+    //     //@ts-ignore
+    //     this.context.setCount(newCount);
+    // }
+    //
+    // render() {
+    //     return (
+    //         <>
+    //             <button
+    //                 style={{marginRight: 10}}
+    //                 onClick={this.increase}>
+    //                 INCREASE
+    //             </button>
+    //             <button
+    //                 onClick={this.decrease}>
+    //                 DECREASE
+    //             </button>
+    //         </>
+    //     );
+    // }
 
     render() {
         return (
-            <>
-                <button style={{marginRight: 10}} onClick={this.handleClickIncrease}>INCREASE</button>
-                <button onClick={this.handleClickDecrease}>DECREASE</button>
-            </>
+            <CounterDataContext.Consumer>
+                {
+                    context => {
+                        const increase = () => {
+                            const newCount = context.count + 1;
+                            context.setCount(newCount);
+                        }
+                        const decrease = () => {
+                            const newCount = context.count - 1;
+                            context.setCount(newCount);
+                        }
+                        return (
+                            <>
+                                <button
+                                    style={{marginRight: 10}}
+                                    onClick={increase}>
+                                    INCREASE
+                                </button>
+                                <button
+                                    onClick={decrease}>
+                                    DECREASE
+                                </button>
+                            </>
+                        )
+                    }
+                }
+            </CounterDataContext.Consumer>
         );
     }
 }
+
+// Counter.contextType = CounterDataContext
 
 export default Counter;
