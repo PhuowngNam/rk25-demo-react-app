@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import './App.css';
 import {Person, PersonF, PersonProps} from "./component/class-component/Person";
+import {ReactComponent} from "*.svg";
+import {ItemListStyle} from "./component/generic/ItemListStyle";
 
 interface IAppState {
     id: string,
@@ -36,13 +38,6 @@ class App extends Component<any, IAppState> {
         })
     }
 
-    changeIdInput = (value: string) => {
-        this.setState({
-            ...this.state,
-            id: value
-        })
-    }
-
     update = () => {
         if (this.state.id) {
             const newPersonList = this.state.personList.map(person => {
@@ -61,40 +56,52 @@ class App extends Component<any, IAppState> {
 
     render() {
         return (
-            <div className="App">
-                <ul>
-                    {this.state.personList.map(user => {
-                        return (
-                            <li key={user.id}>
-                                <Person
-                                    id={user.id}
-                                    fullname={user.fullname}
-                                    age={user.age}
-                                    height={user.height}
-                                    onClickPerson={() => {
-                                        this.handleOnClickPerson(user.id)
-                                    }}
-                                />
-                            </li>
-                        )
-                    })}
-                </ul>
-                <div>
-                    ID: <input disabled value={this.state.id}
-                               // onChange={(e) => {
-                               //     this.changeIdInput(e.target.value)
-                               //}}
-                />
+            <>
+                {this.state.personList.length !== 0 && (
+                    <>
+                        <div className="App">
+                            {this.state.personList.map(user => {
+                                return (
+                                    <ItemListStyle>
+                                        <Person
+                                            id={user.id}
+                                            fullname={user.fullname}
+                                            age={user.age}
+                                            height={user.height}
+                                            onClickPerson={() => {
+                                                this.handleOnClickPerson(user.id)
+                                            }}
+                                        />
+                                        <div>
+                                            13123
+                                        </div>
+                                    </ItemListStyle>
+                                )
+                            })}
+                            <div>
+                                ID: <input disabled value={this.state.id}
+                                // onChange={(e) => {
+                                //     this.changeIdInput(e.target.value)
+                                //}}
+                            />
 
-                    FullName: <input value={this.state.fullName} onChange={
-                    (e) => {
-                        this.changeFullNameInput(e.target.value)
-                    }}/>
-                    <button onClick={this.update}>
-                        Cập nhật
-                    </button>
-                </div>
-            </div>
+                                FullName: <input value={this.state.fullName} onChange={
+                                (e) => {
+                                    this.changeFullNameInput(e.target.value)
+                                }}/>
+                                <button onClick={this.update}>
+                                    Cập nhật
+                                </button>
+                            </div>
+                        </div>
+                    </>
+                )}
+                {!this.state.personList.length && (
+                    <>
+                        <div>Nothing</div>
+                    </>
+                )}
+            </>
         );
     }
 }
