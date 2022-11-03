@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import store from "./redux-app";
 import {decreaseAction, increaseAction} from "./action/counter-action";
+import counterSelector from "./selector/counter-selector";
 
 function Counter() {
     const [counter, setCounter] = useState(0);
@@ -11,7 +12,8 @@ function Counter() {
         store.dispatch(decreaseAction(20))
     }
     store.subscribe(() => {
-        setCounter(store.getState().counter);
+        const newCounter = counterSelector();
+        setCounter(newCounter);
     });
     return (
         <div>

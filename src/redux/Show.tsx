@@ -6,7 +6,7 @@ function Show() {
     const [state, setState] = useState(0);
 
     store.subscribe(() => {
-        setState(store.getState().counter);
+        setState(store.getState().counterReducer.counter);
     })
     return (
         <div>SHOW: {state}</div>

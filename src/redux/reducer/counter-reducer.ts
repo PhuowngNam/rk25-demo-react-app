@@ -7,10 +7,11 @@ const initState = {
 export const counterReducer = (state = initState, action: CounterActionType) => {
     switch (action.type) {
         case 'INCREASE':
-            return {
+            const newState = {
                 ...state,
                 counter: state.counter + action.payload
-            };
+            }
+            return newState;
         case 'DECREASE':
             return {
                 ...state,
