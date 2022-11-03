@@ -16,11 +16,12 @@ class App2 extends Component<any, {isShow: boolean}> {
     }
 
     render() {
-        console.log(this.state.isShow)
         return (
             <div>
                 {this.state.isShow && <App/>}
-                <button onClick={this.handleClick}>Show</button>
+                <button onClick={this.handleClick}>
+                    {this.state.isShow ? 'Hide' : 'Show'}
+                </button>
             </div>
         );
     }

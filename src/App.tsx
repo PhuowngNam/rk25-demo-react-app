@@ -22,13 +22,18 @@ class App extends React.Component<any, IState> {
 
         this.state = {
             content: [],
-            source: axios.CancelToken.source()
+            source: null
         }
     }
 
     async componentDidMount() {
-        const data = await accountService.getAll(this.state.source.token);
-        this.setState(data);
+        const source = axios.CancelToken.source();
+        this.setState({
+            ...this.state,
+            source: source
+        })
+        const data = await accountService.getAll(source.token);
+        // this.setState(data);
     }
 
     handleClick(id: string) {
@@ -38,15 +43,15 @@ class App extends React.Component<any, IState> {
     }
 
     componentWillUnmount() {
-        // const controller = new AbortController();
-        // controller.abort();
-        this.state.source.cancel();
-
+        if (this.state.source) {
+            this.state.source.cancel();
+        }
     }
 
     render() {
         return (
             <div>
+                <h1>HELLO</h1>
                 <ul>
                     {this.state.content.map(item => {
                         return (
