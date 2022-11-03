@@ -2,7 +2,7 @@ import React from 'react';
 import Counter from "./redux/Counter";
 import Show from "./redux/Show";
 
-function App7(props: any) {
+function App7ReduxCore(props: any) {
     return (
         <>
             <Counter/>
@@ -11,4 +11,4 @@ function App7(props: any) {
     );
 }
 
-export default App7;
+export default App7ReduxCore;

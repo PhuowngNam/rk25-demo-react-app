@@ -4,14 +4,19 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import App from "./test-useeffect/App";
 import App6 from "./App6";
-import App7 from "./App7";
+import App7ReduxCore from "./App7ReduxCore";
+import App8ReactRedux from "./App8ReactRedux";
+import {Provider} from "react-redux";
+import store from "./react-redux-demo/react-redux-app";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App7 />
+      <Provider store={store}>
+          <App8ReactRedux />
+      </Provider>
   </React.StrictMode>
 );
 
