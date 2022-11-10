@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {connect, useDispatch, useSelector} from "react-redux";
-import {decreaseAction, increaseAction} from "./counter-action";
+import {decreaseAction, increaseAction} from "./action/counter-action";
+import {addAccountToList, addAccountToListAsync} from "./action/account-acction";
+import {accountService} from "../service/account.service";
 
 function Counter(props: any) {
 
@@ -20,6 +22,13 @@ function Counter(props: any) {
         dispatch(decreaseAction(20));
     }
 
+    const getAccount = () =>  {
+        // const response = await accountService.getAll();
+        // dispatch(addAccountToList(response.content));
+        //@ts-ignore
+        dispatch(addAccountToListAsync());
+    }
+
     return (
         <div>
 
@@ -29,6 +38,7 @@ function Counter(props: any) {
             </h1>
             <button onClick={handleIncrease}>INCREASE</button>
             <button onClick={handleDecrease}>DECREASE</button>
+            <button onClick={getAccount}>Get Account</button>
         </div>
     );
 }

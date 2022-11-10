@@ -7,7 +7,9 @@ import App6 from "./App6";
 import App7ReduxCore from "./App7ReduxCore";
 import App8ReactRedux from "./App8ReactRedux";
 import {Provider} from "react-redux";
-import store from "./react-redux-demo/react-redux-app";
+// import store from "./react-redux-demo/react-redux-app";
+import App9ReactRedux from "./App9ReduxToolkit";
+import store from "./redux-toolkit/store";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -15,7 +17,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
       <Provider store={store}>
-          <App8ReactRedux />
+          <App9ReactRedux/>
+          {/*<App8ReactRedux />*/}
+          {/*<App7ReduxCore/>*/}
       </Provider>
   </React.StrictMode>
 );
